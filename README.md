@@ -15,6 +15,7 @@ Sistema para llevar el seguimiento de las finanzas personales. Desarrollado como
 ## Para el frontend
 
 	cd frontend
+	npm install
 	npm start
 
 # Endpoints

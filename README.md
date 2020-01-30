@@ -68,7 +68,7 @@ Formato:
 	{
 		"concepto": "Nuevo gasto",
 		"monto": "-100.00"
-	},
+	}
 
 Devuelve: 
 
@@ -96,7 +96,7 @@ Formato:
 	{
 		"concepto": "Gasto modificado",
 		"monto": "-500.00"
-	},
+	}
 
 Devuelve: 
 
@@ -105,7 +105,7 @@ Devuelve:
 		"fecha": "2020-01-30T16:41:04.090950-03:00",
 		"concepto": "Gasto modificado",
 		"monto": "-500.00"
-	},
+	}
 
 Ejemplo de error:
 

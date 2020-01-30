@@ -22,9 +22,7 @@ Sistema para llevar el seguimiento de las finanzas personales. Desarrollado con 
 
 ## GET api/transacciones/
 
-Lista el historial completo de transacciones.
-
-No acepta parámetros.
+Lista el historial completo de transacciones. No acepta parámetros.
 
 Devuelve:
 
@@ -89,7 +87,7 @@ Ejemplo de error:
 
 ## PUT api/transacciones/:id/
 
-Modifica una transacción existente. Devuelve el objeto modificado o objeto con información sobre el error.
+Modifica una transacción existente. Devuelve el objeto modificado o un objeto con información sobre el error.
 
 Formato:
 

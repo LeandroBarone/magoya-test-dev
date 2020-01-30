@@ -8,6 +8,7 @@ class TransaccionSerializer(serializers.ModelSerializer):
 		model = Transaccion
 		fields = '__all__'
 
+	# Validamos que los débitos no sean superiores al dinero disponible
 	def validate_monto(self, value):
 		total = Transaccion.objects.all().aggregate(Sum('monto'))['monto__sum'] or 0
 		if (0 - value > total):

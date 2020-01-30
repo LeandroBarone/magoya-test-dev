@@ -1,6 +1,6 @@
 # Mis Finanzas
 
-Sistema para llevar el seguimiento de las finanzas personales. Desarrollado como prueba para Magoya por Leandro Barone (web@leandrobarone.com.ar).
+Sistema para llevar el seguimiento de las finanzas personales. Desarrollado con Django, Django REST Framework y React como prueba para Magoya por Leandro Barone (web@leandrobarone.com.ar).
 
 # Puesta en marcha
 
@@ -43,7 +43,7 @@ Devuelve:
 		}
 	]
 
-### id: _string_
+### id: _integer_
 
 ID autoincremental generado automáticamente al crear una transacción.
 
@@ -77,7 +77,7 @@ Devuelve:
 		"fecha": "2020-01-30T16:41:04.090949-03:00",
 		"concepto": "Nuevo gasto",
 		"monto": "-100.00"
-	},
+	}
 
 Ejemplo de error:
 

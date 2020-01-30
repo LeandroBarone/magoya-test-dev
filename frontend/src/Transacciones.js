@@ -40,7 +40,7 @@ function Transacciones() {
   }
 
   // Guarda una nueva transacción a través de la API
-  function handleGuardarTransaccion() {
+  function guardarTransaccion() {
     const concepto = nuevoConcepto;
     const monto = parseFloat(nuevoMonto);
 
@@ -61,15 +61,6 @@ function Transacciones() {
       .then(cargarTransacciones)
       .catch(err => console.log(err))
       .finally(setActualizando(false))
-  }
-
-  // Binding de dos vías
-  function handleNuevoConcepto(e) {
-    setNuevoConcepto(e.target.value);
-  }
-
-  function handleNuevoMonto(e) {
-    setNuevoMonto(e.target.value);
   }
 
   return (
@@ -104,16 +95,16 @@ function Transacciones() {
 
       <div className="form-row">
         <div className="col-md-6">
-          <input className="form-control" placeholder="Nuevo débito o crédito" value={nuevoConcepto} onChange={handleNuevoConcepto} onKeyUp={validarFormulario} />
+          <input className="form-control" placeholder="Nuevo débito o crédito" value={nuevoConcepto} onChange={e => setNuevoConcepto(e.target.value)} onInput={validarFormulario} />
         </div>
         <div className="col-md-3 input-group">
           <div className="input-group-prepend">
             <div className="input-group-text">$</div>
           </div>
-          <input type="number" className="form-control" placeholder="Monto" value={nuevoMonto} onChange={handleNuevoMonto} onKeyUp={validarFormulario} />
+          <input type="number" className="form-control" placeholder="Monto" value={nuevoMonto} onChange={e => setNuevoMonto(e.target.value)} onKeyUp={validarFormulario} onInput={validarFormulario} />
         </div>
         <div className="col-md-3 text-right">
-          <button className="btn btn-primary btn-block" disabled={!formularioValido} onClick={handleGuardarTransaccion}>Guardar</button>
+          <button className="btn btn-primary btn-block" disabled={!formularioValido} onClick={guardarTransaccion}>Guardar</button>
         </div>
       </div>
       {(actualizando) ? (

@@ -17,26 +17,17 @@ function Transacciones() {
   // Carga las transacciones desde la API
   function cargarTransacciones() {
     setActualizando(true);
+  
     fetch('http://localhost:8000/api/transacciones/')
+      .then(res => { if (res.ok) return res; else throw new Error(res.statusText); })
       .then(res => res.json())
       .then(json => {
         setTransacciones(json);
         const montoTotal = json.reduce((a, el) => a + parseFloat(el.monto), 0);
         setMontoTotal(montoTotal);
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err))
       .finally(setActualizando(false))
-  }
-
-  // Verifica si el formulario es válido para activar/desactivar el botón Guardar
-  function validarFormulario() {
-    setFormularioValido(
-      (nuevoConcepto) &&
-      (nuevoMonto) &&
-      !isNaN(nuevoMonto) &&
-      nuevoMonto !== 0 &&
-      nuevoMonto >= 0 - montoTotal
-    );
   }
 
   // Guarda una nueva transacción a través de la API
@@ -51,16 +42,28 @@ function Transacciones() {
       headers: {
         'content-type': 'application/json',
       },
-      body: JSON.stringify({ concepto, monto}),
+      body: JSON.stringify({ concepto, monto }),
     })
-      .then(res => res.json())
+      .then(res => { if (res.ok) return res; else throw new Error(res.statusText); })
       .then(() => {
         setNuevoConcepto('');
         setNuevoMonto('');
+        setFormularioValido(false);
       })
       .then(cargarTransacciones)
-      .catch(err => console.log(err))
+      .catch(err => alert(err))
       .finally(setActualizando(false))
+  }
+
+  // Verifica si el formulario es válido para activar/desactivar el botón Guardar
+  function validarFormulario() {
+    setFormularioValido(
+      (nuevoConcepto) &&
+      (nuevoMonto) &&
+      !isNaN(nuevoMonto) &&
+      nuevoMonto !== 0 &&
+      nuevoMonto >= 0 - montoTotal
+    );
   }
 
   return (
@@ -95,7 +98,7 @@ function Transacciones() {
 
       <div className="form-row">
         <div className="col-md-6">
-          <input className="form-control" placeholder="Nuevo débito o crédito" value={nuevoConcepto} onChange={e => setNuevoConcepto(e.target.value)} onInput={validarFormulario} />
+          <input className="form-control" placeholder="Nuevo débito o crédito" value={nuevoConcepto} onChange={e => setNuevoConcepto(e.target.value)} onKeyUp={validarFormulario} onInput={validarFormulario} />
         </div>
         <div className="col-md-3 input-group">
           <div className="input-group-prepend">
